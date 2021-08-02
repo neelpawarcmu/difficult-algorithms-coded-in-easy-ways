@@ -1,3 +1,4 @@
+  import numpy as np
   def dynIsSubset(nums, sum):
   	dp = np.zeros(len(set)+1, sum+1)
   	
