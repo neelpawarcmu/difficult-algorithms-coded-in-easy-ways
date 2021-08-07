@@ -6,6 +6,7 @@ class Solution(object):
                 if text1[row-1] == text2[col-1]:
                     dp[row][col] = dp[row-1][col-1] + 1
                 else:
+                    """ONLY CHANGE"""
                     dp[row][col] = 0    
         return dp[len(text1)][len(text2)]
         
