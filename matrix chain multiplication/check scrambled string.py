@@ -1,6 +1,7 @@
-
 import math
 class Solution:
+    def __init__(self):
+            self.memo = {}
             
     def isScrambled(self, str1, str2):
         #i, j = 0, len(str)-1
@@ -22,10 +23,35 @@ class Solution:
             flag_scrambled = False
             
             i, j = 0, len(str1)-1
+            if (str1,str2) in self.memo:
+                return self.memo[(str1,str2)]
             
             for k in range(i,j):
-                condition1 = matchStrings(str1[i:k], str2[i:k]) and matchStrings(str1[k+1:j], str2[k+1:j])
-                condition2 = matchStrings(str1[k+1:j], str2[i:k]) and matchStrings(str1[i:k], str2[k+1:j])
+                #condn1 parts
+                if (str1[i:k], str2[i:k]) in self.memo:               
+                    left1 = self.memo[(str1[i:k], str2[i:k])]
+                else:
+                    left1 = matchStrings(str1[i:k], str2[i:k])
+                
+                if str1[k+1:j], str2[k+1:j] in self.memo:               
+                    right1 = self.memo[(str1[k+1:j], str2[k+1:j])]
+                else:
+                    right1 = matchStrings(str1[k+1:j], str2[k+1:j)
+                
+                #condn2 parts
+                if (str1[k+1:j], str2[i:k]) in self.memo:               
+                    left2 = self.memo[(str1[k+1:j], str2[i:k])]
+                else:
+                    left2 = matchStrings(str1[k+1:j], str2[i:k])
+                
+                if (str1[i:k], str2[k+1:j]) in self.memo:               
+                    right2 = self.memo[(str1[i:k], str2[k+1:j])]
+                else:
+                    right2 = matchStrings(str1[k+1:j], str2[k+1:j)
+                
+                #assemble conditions
+                condition1 = left1 and right1
+                condition2 = left2 and right2
                 
                 if condition1 or condition2:
                      flag_scrambled = True
