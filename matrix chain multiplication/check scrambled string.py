@@ -32,22 +32,26 @@ class Solution:
                     left1 = self.memo[(str1[i:k], str2[i:k])]
                 else:
                     left1 = matchStrings(str1[i:k], str2[i:k])
+                    self.memo[(str1[i:k], str2[i:k])] = left1
                 
                 if str1[k+1:j], str2[k+1:j] in self.memo:               
                     right1 = self.memo[(str1[k+1:j], str2[k+1:j])]
                 else:
                     right1 = matchStrings(str1[k+1:j], str2[k+1:j)
+                    self.memo[(str1[k+1:j], str2[k+1:j])] = right1
                 
                 #condn2 parts
                 if (str1[k+1:j], str2[i:k]) in self.memo:               
                     left2 = self.memo[(str1[k+1:j], str2[i:k])]
                 else:
                     left2 = matchStrings(str1[k+1:j], str2[i:k])
+                    self.memo[(str1[k+1:j], str2[i:k])] = left2
                 
                 if (str1[i:k], str2[k+1:j]) in self.memo:               
                     right2 = self.memo[(str1[i:k], str2[k+1:j])]
                 else:
                     right2 = matchStrings(str1[k+1:j], str2[k+1:j)
+                    self.memo[(str1[k+1:j], str2[i:k])] = right2
                 
                 #assemble conditions
                 condition1 = left1 and right1
