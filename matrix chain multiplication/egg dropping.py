@@ -25,7 +25,15 @@ class Solution:
         minCount = math.inf 
         #k range: full range of i to j
         for k in range(i, j):
-            tempcount = 1 + max(self.dropEggs(eggs, floors-k), self.dropEggs(eggs-1, k-1)) #+1 for current drop
+            if (eggs, floors-k) not in self.memo:
+                nobrkCount = self.dropEggs(eggs, floors-k)
+                self.memo[(eggs, floors-k)] = nobrkCount
+                
+            if (eggs-1, k-1) not in self.memo:
+                brkCount = self.dropEggs(eggs-1, k-1)
+                self.memo[(eggs-1, k-1)] = brkCount
+                
+            tempcount = 1 + max(self.memo[(eggs, floors-k)], self.memo[(eggs-1, k-1)]) #+1 for current drop
             minCount = min(minCount, tempcount)
             self.memo[(eggs,floors)] = minCount
         return self.memo[(eggs,floors)]
