@@ -1,3 +1,6 @@
+#Q: can a set be partitioned into 2 subsets of equal sums?
+#A: Just divide the set's full sum by two (and it needs to be even, right?) and do a subset sum search
+
 class Solution(object):
     def canPartition(self, nums):
         def subsetSum(numLen, target):
