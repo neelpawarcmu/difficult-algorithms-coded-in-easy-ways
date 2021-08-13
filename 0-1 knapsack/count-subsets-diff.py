@@ -1,4 +1,4 @@
-#Q: given a set of numbers, return two sets such that the difference between their individual sums is equal to a target number
+#Q: given a set of numbers, count how many pairs of two sets exist such that the difference between their individual sums is equal to a target number
 def countSubsetsSum(nums, target):
   numLen = len(nums)
   dp = [[0 for col in range(target+1)] for row in range(numLen+1)]
