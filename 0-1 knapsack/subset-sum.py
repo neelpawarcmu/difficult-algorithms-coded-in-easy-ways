@@ -1,3 +1,5 @@
+#Q: given a set and a target sum, return if there exists at least one subset that adds up to the sum.
+
 class Solution(object):
       def subsetSum(self, nums, target):
           numLen = len(nums)
