@@ -10,3 +10,6 @@ class Solution(object):
                 dp[idx].append(subset+[num])
                 
         return dp[len(nums)-1]
+    
+            
+        #initialize an empty set and a filled set, now for every combination in next step, use empty set and filled set, ffilling and not filling both to generate all combinations, and so on. 
